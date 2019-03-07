@@ -6,6 +6,8 @@ import ContactData from './ContactData';
 
 import { Route, Redirect } from 'react-router-dom';
 
+import * as actionCreators from '../../store/actions/index';
+
 class Checkout extends Component {
 
     checkoutCancelledHandler = () => {  
@@ -23,7 +25,13 @@ class Checkout extends Component {
         console.log(this.props.ings);
 
         if (this.props.ings) {
+
+            console.log("PURCHASED", this.props.purchased);
+
+            const purchasedRedirect = this.props.purchased ? <Redirect to='/' /> : null;
+
             summary = (<div>
+                        {purchasedRedirect}
                         <CheckoutSummary 
                             ingredients={this.props.ings}
                             checkoutCancelled={this.checkoutCancelledHandler}
@@ -42,6 +50,7 @@ class Checkout extends Component {
 const mapStateToProps = state => {
     return {
         ings: state.burgerBuilder.ingredients,
+        purchased: state.order.purchased,
     };
 }
 
