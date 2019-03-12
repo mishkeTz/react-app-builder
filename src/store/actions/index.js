@@ -9,3 +9,9 @@ export {
     purchaseInit,
     fetchOrders
 } from './order';
+
+export {
+    auth,
+    logOut,
+    setAuthRedirectPath,
+} from './auth';
